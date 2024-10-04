@@ -136,7 +136,7 @@ public class PrimaryConfig {
     public String applyCustomPlaceholders(final String string) {
         String placeholderResolvedMessage = string;
         for (final var entry : this.customPlaceholders.entrySet()) {
-            placeholderResolvedMessage = placeholderResolvedMessage.replace("<" + entry.getKey() + ">",
+            placeholderResolvedMessage = placeholderResolvedMessage.replace("[" + entry.getKey() + "]",
                 entry.getValue());
         }
         return placeholderResolvedMessage;
@@ -149,7 +149,7 @@ public class PrimaryConfig {
     public String applyChatPlaceholders(final String string) {
         String placeholderResolvedMessage = string;
         for (final var entry : this.chatPlaceholders.entrySet()) {
-            placeholderResolvedMessage = placeholderResolvedMessage.replace("<" + entry.getKey() + ">",
+            placeholderResolvedMessage = placeholderResolvedMessage.replace("[" + entry.getKey() + "]",
                 entry.getValue());
         }
         return placeholderResolvedMessage;
