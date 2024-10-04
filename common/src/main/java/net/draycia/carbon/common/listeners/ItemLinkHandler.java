@@ -50,7 +50,7 @@ public class ItemLinkHandler implements Listener {
             for (final var placeholder : slot.placeholders()) {
                 message = message
                         .replaceText(TextReplacementConfig.builder()
-                        .matchLiteral("<" + placeholder + ">")
+                        .matchLiteral("[" + placeholder + "]")
                         .replacement(builder -> {
                             final Component itemComponent = sender.createItemHoverComponent(slot);
 
