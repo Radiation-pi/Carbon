@@ -2,7 +2,10 @@ name: Build
 on:
   push:
     branches: [ "**" ]
-    tags: [ "v**" ]
+    paths:
+      - '.github/workflows/**'
+      - 'common/**'
+      - 'pom.xml'
   pull_request:
   release:
     types: [ published ]
