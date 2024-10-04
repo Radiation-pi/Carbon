@@ -9,7 +9,8 @@ on:
   pull_request:
   release:
     types: [ published ]
-
+  workflow_dispatch:
+  
 jobs:
   build:
     # Only run on PRs if the source branch is on someone else's repo
@@ -41,11 +42,17 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Jars
-          path: build/libs/*.jar
-
+          name: Carbon Jars
+          path: build/libs/carbonchat-paper*.jar
+          
+      - uses: actions/download-artifact@v3
+        name: Download Beta artifact
+        with:
+          name: Carbon Jars download
+          path: Carbon
+          
       - name: List downloaded files
-        run: ls -R downloaded_artifacts
+        run: ls -R Carbon
         
       - name: Automatic Releases
         uses: marvinpinto/action-automatic-releases@v1.2.1
@@ -55,4 +62,4 @@ jobs:
           prerelease: false
           title: "Carbon 自动构建版本"
           files: |
-            downloaded_artifacts/carbonchat-paper*.jar
+            Carbon/carbonchat-paper*.jar
