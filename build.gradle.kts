@@ -35,19 +35,6 @@ hangarPublish.publications.register("plugin") {
       }
     }
   }
-  platforms.velocity {
-    jar = project(":carbonchat-velocity").platformJar()
-    platformVersions.add("3.3")
-    dependencies {
-      url("LuckPerms", "https://luckperms.net/")
-      hangar("MiniPlaceholders") {
-        required = false
-      }
-      hangar("SignedVelocity") {
-        required = false
-      }
-    }
-  }
 }
 
 indraSonatype {
