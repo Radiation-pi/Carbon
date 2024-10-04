@@ -44,22 +44,19 @@ jobs:
         with:
           name: Carbon Jars
           path: build/libs/carbonchat-paper*.jar
-          
-      - uses: actions/download-artifact@v3
-        name: Download Beta artifact
-        with:
-          name: Carbon Jars download
-          path: Carbon
-          
-      - name: List downloaded files
-        run: ls -R Carbon
-        
-      - name: Automatic Releases
-        uses: marvinpinto/action-automatic-releases@v1.2.1
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "Sicilia"
-          prerelease: false
-          title: "Carbon 自动构建版本"
-          files: |
-            Carbon/carbonchat-paper*.jar
+      - name: staging
+        run: mkdir staging && cp RayTraceAntiXray/target/*.jar staging 
+      - name: Set Release version env variable 
+        run: | 
+          echo "RELEASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV 
+      - name: "Build & test" 
+        run: | 
+          echo "done!" 
+      - uses: "marvinpinto/action-automatic-releases@latest" 
+        with: 
+          repo_token: "${{ secrets.GITHUB_TOKEN }}" 
+          automatic_release_tag: "${{ env.RELEASE_VERSION }}" 
+          prerelease: false 
+          title: "Release ${{ env.RELEASE_VERSION }}" 
+          files: | 
+            staging/*.jar
