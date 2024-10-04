@@ -43,3 +43,16 @@ jobs:
         with:
           name: Jars
           path: build/libs/*.jar
+
+      - name: List downloaded files
+        run: ls -R downloaded_artifacts
+        
+      - name: Automatic Releases
+        uses: marvinpinto/action-automatic-releases@v1.2.1
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "Sicilia"
+          prerelease: false
+          title: "Carbon 自动构建版本"
+          files: |
+            downloaded_artifacts/carbonchat-paper*.jar
