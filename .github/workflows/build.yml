@@ -45,7 +45,7 @@ jobs:
           name: Carbon Jars
           path: build/libs/carbonchat-paper*.jar
       - name: staging
-        run: mkdir staging && cp target/*.jar staging 
+        run: mkdir staging && cp build/libs/carbonchat-paper*.jar staging 
       - name: Set Release version env variable 
         run: | 
           echo "RELEASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV 
